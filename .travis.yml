@@ -6,4 +6,9 @@ before_script:
     - sleep 10
     - sudo service mysql stop
 script:
-    - mysql --defaults-extra-file=mysql.conf -e 'SELECT 1;'
+    - mysql --defaults-extra-file=mysql.conf --print-defaults
+    - mysql --defaults-extra-file=mysql.conf --help
+    - mysql --defaults-extra-file=mysql.conf -e 'SELECT 1;' || echo 'ignore'
+    - cat ~/.my.cnf
+    - rm -f ~/.my.cnf
+    - mysql --defaults-extra-file=mysql.conf -e 'SELECT 1;' 
