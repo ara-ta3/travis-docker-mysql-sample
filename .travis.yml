@@ -1,0 +1,9 @@
+dist: trusty
+services:
+    - docker
+before_script:
+    - docker run --detach --env MYSQL_ROOT_PASSWORD=root --publish 3307:3306 mysql:5.6
+    - sleep 10
+    - sudo service mysql stop
+script:
+    - mysql --defaults-extra-file=mysql.conf -e 'SELECT 1;'
